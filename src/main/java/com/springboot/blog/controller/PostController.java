@@ -15,6 +15,8 @@ public class PostController {
     public static final String BASE_PATH = "/api/posts";
     public static final String PATH_CREATE = "/";
     public static final String PATH_ALL_POST = "/";
+    public static final String PATH_DELETE = "/{id}";
+    public static final String PATH_ONE_POST = "/{id}";
     private PostService postService;
 
     public PostController(PostService postService) {
@@ -29,5 +31,10 @@ public class PostController {
     @GetMapping(path = PATH_ALL_POST)
     public List<PostBuilder> getAllPost(){
         return postService.getAllPosts();
+    }
+
+    @GetMapping(path = PATH_ONE_POST)
+    public PostBuilder getPostById(@PathVariable long id){
+        return postService.getPostById(id);
     }
 }
