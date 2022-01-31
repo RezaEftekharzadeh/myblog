@@ -8,7 +8,6 @@ import com.springboot.blog.service.PostService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,13 +33,26 @@ public class PostServiceImp implements PostService {
     }
 
     @Override
-    public PostBuilder getPostById(long id) {
-        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("post","id",id));
-        return mapPostToPostBuilder(post);
+    public PostBuilder getPostBuilderById(long id) {
+        return mapPostToPostBuilder(getPostById(id));
     }
 
-    public String deletePost(long id){
-        return null;
+    private Post getPostById(long id){
+        return postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("post","id",id));
+    }
+
+    public void deletePostById(long id){
+        postRepository.deleteById(id);
+    }
+
+    @Override
+    public PostBuilder updatePost(long id, PostBuilder postBuilder) {
+        Post postById = getPostById(id);
+                postById.setTitle(postBuilder.getTitle());
+                postById.setDescription(postBuilder.getDescription());
+                postById.setContent(postBuilder.getContent());
+        postRepository.save(postById);
+        return mapPostToPostBuilder(postById);
     }
 
     private PostBuilder mapPostToPostBuilder(Post post) {

@@ -17,6 +17,7 @@ public class PostController {
     public static final String PATH_ALL_POST = "/";
     public static final String PATH_DELETE = "/{id}";
     public static final String PATH_ONE_POST = "/{id}";
+    public static final String PATH_UPDATE = "/{id}";
     private PostService postService;
 
     public PostController(PostService postService) {
@@ -35,6 +36,16 @@ public class PostController {
 
     @GetMapping(path = PATH_ONE_POST)
     public PostBuilder getPostById(@PathVariable long id){
-        return postService.getPostById(id);
+        return postService.getPostBuilderById(id);
+    }
+
+    @DeleteMapping(path = PATH_DELETE)
+    public void deletePost(@PathVariable long id){
+       postService.deletePostById(id);
+    }
+
+    @PutMapping(path = PATH_UPDATE )
+    public PostBuilder updatePost(@PathVariable long id, @RequestBody PostBuilder postBuilder){
+        return postService.updatePost(id, postBuilder);
     }
 }
