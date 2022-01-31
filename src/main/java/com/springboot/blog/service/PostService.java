@@ -1,6 +1,7 @@
 package com.springboot.blog.service;
 
 import com.springboot.blog.Builder.PostBuilder;
+import com.springboot.blog.entity.Comment;
 
 import java.util.List;
 
@@ -10,4 +11,6 @@ public interface PostService {
     PostBuilder getPostBuilderById(long id);
     void deletePostById(long id);
     PostBuilder updatePost(long id, PostBuilder postBuilder);
+
+
 }
