@@ -1,6 +1,7 @@
 package com.springboot.blog.service.imp;
 
 import com.springboot.blog.Builder.PostBuilder;
+import com.springboot.blog.entity.Comment;
 import com.springboot.blog.entity.Post;
 import com.springboot.blog.exception.ResourceNotFoundException;
 import com.springboot.blog.repository.PostRepository;

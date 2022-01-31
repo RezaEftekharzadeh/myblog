@@ -1,6 +1,7 @@
 package com.springboot.blog.controller;
 
 import com.springboot.blog.Builder.PostBuilder;
+import com.springboot.blog.entity.Comment;
 import com.springboot.blog.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ public class PostController {
     public static final String PATH_DELETE = "/{id}";
     public static final String PATH_ONE_POST = "/{id}";
     public static final String PATH_UPDATE = "/{id}";
+
     private PostService postService;
 
     public PostController(PostService postService) {
